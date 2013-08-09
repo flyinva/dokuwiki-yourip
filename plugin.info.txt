@@ -1,0 +1,7 @@
+base   yourip
+author Artem Sidorenko
+email  artem@2realities.com
+date   2011-04-22
+name   yourip plugin
+desc   Show the ip information of visitor
+url    http://www.dokuwiki.org/plugin:yourip

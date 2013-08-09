@@ -1,0 +1,26 @@
+/*
+ * @file      yourip/style.css
+ * @brief     YourIP Cascade Style Sheet
+ *
+ * @author    Artem Sidorenko <artem@2realities.com>
+ */
+
+div#yourip {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+  background-color: #ffe7af;
+  border: 1px solid __border__;
+/*  font-size: smaller; */
+  }
+  
+div#yourip.ipv6 {
+  background-color: #c4efa1;
+  }
+
+div#yourip.ipv4 {
+  background-color: #ffe7af;
+  }
+
+p#yourip {
+/*  font-size: smaller; */
+  }
