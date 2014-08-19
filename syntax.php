@@ -48,7 +48,13 @@ class syntax_plugin_yourip extends DokuWiki_Syntax_Plugin {
     public function render($mode, &$renderer, $data) {
         if($mode != 'xhtml') return false;
 
-        $ip = getenv ("REMOTE_ADDR");
+        $proxy = getenv ("HTTP_X_FORWARDED_FOR");
+        if ( $proxy ) 
+            $ip = $proxy ;
+        else
+            $ip = getenv ("REMOTE_ADDR");
+
+        $ua = getenv ("HTTP_USER_AGENT");
         $type=false;
         if (substr_count($ip,":") > 1 && substr_count($ip,".") == 0)
             $type='ipv6';
@@ -71,10 +77,11 @@ class syntax_plugin_yourip extends DokuWiki_Syntax_Plugin {
         }elseif($data['yourip_type']=="line"){
             $text="<p id='yourip' class='$type'>";
             if($type=='ipv6')
-                $text .= "IPv6 connection from <a href='http://www.sixxs.net/tools/ipv6calc/'>$ip</a>";
+                $text .= "IPv6 connection from $ip";
             else
-                $text .= "IPv4 connection from <a href='http://www.sixxs.net/tools/ipv6calc/'>$ip</a>";
-            $text .="</p>";
+                $text .= "IPv4 connection from $ip";
+            $text .="<pre>$ua</pre></p>";
+
             $renderer->doc .= $text;
             return true;
         }
